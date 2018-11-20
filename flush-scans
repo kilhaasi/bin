@@ -1,0 +1,30 @@
+if [ $# != 1 ]
+then
+ user="marcus"
+else
+ user=$1
+fi
+
+ablage="/volume1/Ablage"
+jahr=$(date +'%Y')
+
+cd $ablage
+if [ -e $ablage/input/stop ]
+then
+ exit 0
+fi
+
+
+mkdir -pv $ablage/$user/$jahr
+mv input/*.pdf $ablage/$user/$jahr
+cd $ablage/$user/$jahr
+for datei in $(ls *.pdf)
+do
+ verz=$(echo $datei|cut -d "_" -f1)
+ mkdir -v $verz 2>/dev/null
+ mv -v $datei $verz
+done
+rmdir *
+cd $ablage
+rm -Rvf input;mkdir input
+date > input/stop

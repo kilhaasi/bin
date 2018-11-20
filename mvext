@@ -1,0 +1,9 @@
+alt=$1
+neu=$2
+
+for datei in $(ls *.${alt})
+do
+ name=$(echo $datei|cut -d "." -f1)
+ ziel=$(echo ${name}.${neu})
+ mv $datei $ziel
+done

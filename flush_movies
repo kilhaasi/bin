@@ -1,0 +1,24 @@
+. /root/bin/.config
+cd $IN
+counter=0
+until [ $counter = 64 ]
+do
+let counter=$counter+1
+ rename " " "_" *
+done
+
+clear
+echo "============== Video Files ====================="
+echo
+ls -lh 
+
+for datei in $(ls )
+do
+ echo $datei
+ read zielname
+ if [ $zielname != "x" ]
+ then
+  mv -v $datei $MOVIES/$zielname
+ fi
+done
+

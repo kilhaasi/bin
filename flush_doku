@@ -1,0 +1,21 @@
+cd /Archiv/Video/Dokus || mkdir -pv /Archiv/Video/Dokus
+cd /Archiv/Video/Dokus
+clear
+echo "============== Doku Files ======================"
+echo "Name der Dokumentation?:"
+read doku
+echo "Suffix?"
+read suffix
+cd /Volumes/Video/Transcode
+
+if [ -d /Volumes/Video/Dokus/${doku} ]
+then
+ /Users/marcus/skripte/filecounter zzz_Teil
+ mv -v /Volumes/Video/Dokus/${doku}/* .
+else
+ mkdir -pv /Volumes/Video/Dokus/${doku}
+fi
+
+/Users/marcus/skripte/filecounter Teil
+/Users/marcus/skripte/mvext counted $suffix
+mv -v * /Volumes/Video/Dokus/${doku}

@@ -1,0 +1,34 @@
+. /root/bin/.config
+cd $IN
+until diff /tmp/now /tmp/then
+do
+ ls > /tmp/now
+ find . > filelist.txt
+ while read datei
+ do
+  mv "$datei" .
+ done < filelist.txt
+ rm filelist.txt
+ rm -i *ample*
+ rm -v *.URL *.ini *.doc *.png *.txt *.jpg *.sfv *.srt *.nfo *.sub *.idx *.txt *.url 2>/dev/null
+ rm -v $(find . -name .DS_Store) 2>/dev/null
+ rmdir *
+ ls > /tmp/then
+done
+rm /tmp/now /tmp/then
+clear
+echo "============== Video Files ====================="
+ls -lh 
+echo
+ls -lh|wc -l
+echo
+echo "m=Spielfime d=Dokus s=Serien"
+read auswahl
+
+case $auswahl in
+
+m) /root/bin/flush_movies;;
+d) /root/bin/flush_doku;;
+s) /root/bin/flush_season;;
+
+esac

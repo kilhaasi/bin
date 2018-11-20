@@ -1,0 +1,9 @@
+for cont in $(docker ps --all -q)
+do
+ docker rm $cont
+done
+
+for image in $(docker images -q)
+do
+ docker rmi $image
+done

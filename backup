@@ -1,0 +1,11 @@
+#!/bin/bash
+#Creates a backup of all Docker-Volumes and pushes them to G-Drive
+#
+
+cd /Docker
+for verz in $(ls -d1)
+do
+ tar -cvzf $verz.tar.gz $verz
+done
+
+rclone move /Docker/*.tar.gz gdrive:/Backup --verbose --transfers 4 --checkers 20 --stats 10s

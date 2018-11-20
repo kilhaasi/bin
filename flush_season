@@ -1,0 +1,28 @@
+#!/bin/bash
+. /root/bin/.config
+cd $SHOWS || mkdir -pv $SHOWS
+cd $SHOWS
+clear
+echo "============== Episode Files ==================="
+ls
+cd $IN
+echo Name der Serie?:
+read serie
+clear
+ls -d $SHOWS/${serie}/* 2>/dev/null && echo
+echo Nummer der Staffel?:
+read season
+echo Dateiendung?
+read suffix
+
+if [ -d $SHOWS/${serie}/Season_${season} ]
+then
+ /root/bin/filecounter zzz_${serie}_${season}x 
+ mv -v * $SHOWS/${serie}/Season_${season}
+else
+ mkdir -pv $SHOWS/${serie}/Season_${season}
+ mv -v * $SHOWS/${serie}/Season_${season}
+fi
+cd $SHOWS/${serie}/Season_${season}
+/root/bin/filecounter ${serie}_${season}x
+/root/bin/mvext counted $suffix

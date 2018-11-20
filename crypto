@@ -1,0 +1,12 @@
+#!/bin/bash
+sleep 2
+case $1 in
+
+start)  gocryptfs -passfile /root/enc-pwd /mnt/G-Cache/Video /mnt/Video;
+	gocryptfs -passfile /root/enc-pwd /crypt/output /crypt/input;
+	unionfs -o cow /crypt/input=RW:/mnt/Video=RO /Video;;
+stop) 	umount /Video;
+	umount /crypt/input;
+	umount /mnt/Video;;
+
+esac

@@ -1,0 +1,17 @@
+basis=$1
+zaehler=0
+ls>/tmp/filelist.txt
+while read datei
+#for datei in "$(ls)"
+do
+ let zaehler=$zaehler+1
+ if [[ $zaehler -lt 10 ]]
+ then
+  mv "$datei" ${basis}0${zaehler}.counted 2>/dev/null
+  echo "$datei --> ${basis}0${zaehler}.counted"
+ else
+  mv "$datei" ${basis}${zaehler}.counted 2>/dev/null
+  echo "$datei --> ${basis}${zaehler}.counted"
+ fi
+done < /tmp/filelist.txt
+rm /tmp/filelist.txt

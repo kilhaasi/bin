@@ -1,0 +1,31 @@
+if [[ $# -lt 1 ]]
+then
+ echo "Usage: $0 Basedirectory"
+ exit 1
+fi
+
+base=$1
+cd $base
+ls -1 *.mp4 > filelist.txt
+while read datei
+do
+ folder=$(echo $datei|cut -d "-" -f1|cut -d " " -f1-$(echo $datei|cut -d "-" -f1|wc -w))
+ mkdir -v "$folder" 2>/dev/null
+ mv -v "${folder}"*.mp4 "$folder"
+done < filelist.txt
+rm filelist.txt
+
+ls -1 |grep -v mp4 > dirlist.txt
+while read folder
+do
+ cd "$folder"
+ ls -1 "$folder"*.mp4>filelist.txt
+ while read datei
+ do
+  newname=$(echo $datei|cut -d "-" -f2-99|cut -d " " -f2-99)
+  mv "$datei" "$newname"
+ done < filelist.txt
+ rm filelist.txt
+ cd $base
+done < dirlist.txt
+rm dirlist.txt

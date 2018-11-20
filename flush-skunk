@@ -1,0 +1,11 @@
+cd /volume1/Skunk/tmp
+if [[ -s stop ]]
+then
+ exit 0
+fi
+
+mv *.mp4 ../XpliciteArt
+/var/services/homes/marcus/CloudStation/scripts/sort-skunk /volume1/Skunk/XpliciteArt
+mv /volume1/Skunk/XpliciteArt/*.mp4 .
+rmdir /volume1/Skunk/XpliciteArt/*
+echo "Lastrun $(date)" > stop
