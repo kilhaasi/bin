@@ -26,4 +26,4 @@ fi
 cd $SHOWS/${serie}/Season_${season}
 /root/bin/filecounter ${serie}_${season}x
 /root/bin/mvext counted $suffix
-/root/bin/push_gdrive
+
