@@ -32,3 +32,4 @@ d) /root/bin/flush_doku;;
 s) /root/bin/flush_season;;
 
 esac
+/root/bin/push_gdrive
