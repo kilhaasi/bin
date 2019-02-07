@@ -12,9 +12,9 @@ echo "============== Video Files ====================="
 echo
 ls -lh 
 
-mkdir flush_movies
 for datei in $(ls )
 do
+ mkdir flush_movies 2>/dev/null
  echo $datei
  read zielname
  if [ $zielname != "x" ]
