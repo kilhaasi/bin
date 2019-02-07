@@ -7,12 +7,12 @@ let counter=$counter+1
  rename " " "_" *
 done
 
-mkdir flush_movies
 clear
 echo "============== Video Files ====================="
 echo
 ls -lh 
 
+mkdir flush_movies
 for datei in $(ls )
 do
  echo $datei
