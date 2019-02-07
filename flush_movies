@@ -23,6 +23,7 @@ do
  fi
 done
 
+clear
 echo "============== Video Files ====================="
 cd flush_movies
 ls -lh
