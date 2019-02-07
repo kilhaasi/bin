@@ -7,7 +7,7 @@ let counter=$counter+1
  rename " " "_" *
 done
 
-mkdir /tmp/flush_movies
+mkdir flush_movies
 clear
 echo "============== Video Files ====================="
 echo
@@ -19,8 +19,13 @@ do
  read zielname
  if [ $zielname != "x" ]
  then
-  mv -v $datei /tmp/flush_movies/$zielname
+  mv -v $datei flush_movies/$zielname
  fi
 done
 
-mv -v /tmp/flush_movies/* $MOVIES
+echo "============== Video Files ====================="
+cd flush_movies
+ls -lh
+mv -v * $MOVIES
+cd -
+rmdir flush_movies
