@@ -14,11 +14,19 @@ ls -lh
 
 for datei in $(ls )
 do
+ mkdir flush_movies 2>/dev/null
  echo $datei
  read zielname
  if [ $zielname != "x" ]
  then
-  mv -v $datei $MOVIES/$zielname
+  mv -v $datei flush_movies/$zielname
  fi
 done
 
+clear
+echo "============== Video Files ====================="
+cd flush_movies
+ls -lh
+mv -v * $MOVIES
+cd -
+rmdir flush_movies
