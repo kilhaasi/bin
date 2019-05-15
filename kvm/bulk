@@ -1,0 +1,8 @@
+name=$1
+count=$2
+start=$3
+for i in $(seq $start $count)
+do
+ virt-install -r 8192 --vcpus=8 --pxe --os-type=linux --bridge br0 --bridge br1 --boot=network,hd --disk size=64 --name=$name-$i&
+done
+

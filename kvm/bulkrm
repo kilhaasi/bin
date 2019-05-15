@@ -1,0 +1,7 @@
+filter=$1
+for vm in $(virsh list --all --name|grep $filter)
+do
+ virsh destroy $vm 
+ virsh undefine $vm --remove-all-storage
+done
+
